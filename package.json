@@ -14,16 +14,14 @@
     "start:debug": "STAGE=development nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
+    "test": "STAGE=test yarn typeorm -- migration:run && yarn fixtures && jest && yarn typeorm -- migration:revert",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "migration:create": "yarn typeorm -- migration:create",
-    "migration:run": "yarn typeorm -- migration:run",
-    "fixtures": "fixtures -d ./database/fixtures --config ./ormconfig.json --require ts-node/register --debug",
-    "fixtures:test": "fixtures -d ./database/fixtures --config ./ormconfig-test.json --require ts-node/register --debug"
+    "typeorm": "node --require=dotenv/config --require=ts-node/register ./node_modules/typeorm/cli.js --config ./database/migration.ormconfig.ts",
+    "typeorm:test": "  node --require=dotenv/config --require=ts-node/register ./node_modules/typeorm/cli.js --config ./database/migration.ormconfig.ts",
+    "fixtures": "fixtures --require=dotenv/config -d ./database/fixtures --config ./src/config/ormconfig.ts  --require ts-node/register --debug"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
@@ -36,6 +34,7 @@
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "custom-env": "^2.0.1",
     "dotenv": "^10.0.0",
     "lodash": "^4.17.21",
     "passport": "^0.4.1",
