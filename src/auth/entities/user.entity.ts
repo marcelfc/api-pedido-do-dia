@@ -7,7 +7,11 @@ import {
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
-import { UserRole } from 'src/shared/enums/user-role.enum';
+
+export enum UserRole {
+  ADMIN = 'ADMIN',
+  BASIC = 'BASIC',
+}
 
 @Entity('users')
 class User {

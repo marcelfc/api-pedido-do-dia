@@ -1,0 +1,12 @@
+entity: User
+items:
+  user1:
+    name: '{{name.firstName}}'
+    email: '{{internet.email}}'
+    password: 'alterar_aqui_para_padrao'
+    role: 'ADMIN'
+  user2:
+    name: '{{name.firstName}}'
+    email: '{{internet.email}}'
+    password: 'alterar_aqui_para_padrao'
+    role: 'BASIC'
