@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { User, UserRole } from '../entities/user.entity';
-import { UsersRepository } from '../repositories/user.repository';
+import { UsersRepository } from '../repositories/users.repository';
 import { hash, genSalt } from 'bcrypt';
 
 @Injectable()

@@ -2,11 +2,11 @@ entity: User
 items:
   user1:
     name: '{{name.firstName}}'
-    email: '{{internet.email}}'
+    email: 'admin@admin.com'
     password: 'alterar_aqui_para_padrao'
     role: 'ADMIN'
   user2:
     name: '{{name.firstName}}'
-    email: '{{internet.email}}'
+    email: 'user@user.com'
     password: 'alterar_aqui_para_padrao'
     role: 'BASIC'

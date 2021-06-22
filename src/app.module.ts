@@ -6,7 +6,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`.env.${process.env.STAGE}`],
+      envFilePath: ['.env'],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
