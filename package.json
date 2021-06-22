@@ -9,12 +9,12 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "STAGE=development nest start --watch",
-    "start:debug": "STAGE=development nest start --debug --watch",
+    "start": "nest start -e 'node -r dotenv/config'",
+    "start:dev": "STAGE=development nest start --watch -e 'node -r dotenv/config'",
+    "start:debug": "STAGE=development nest start --debug --watch -e 'node -r dotenv/config'",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "STAGE=test jest --require=dotenv/config",
+    "test": "STAGE=test jest --require=ts-node/register --require=tsconfig-paths/register",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
@@ -73,6 +73,9 @@
     "typescript": "^4.2.3"
   },
   "jest": {
+    "setupFiles": [
+      "dotenv/config"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
@@ -86,7 +89,12 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "coverageDirectory": "../coverage",
+    "coverageDirectory": "./report/coverage",
+    "coverageReporters": [
+      "text-summary",
+      "lcov",
+      "cobertura"
+    ],
     "testEnvironment": "node"
   }
 }

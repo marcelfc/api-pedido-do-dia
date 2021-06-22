@@ -1,4 +1,5 @@
 import { ConnectionOptions } from 'typeorm';
+import { join } from 'path';
 
 const config: ConnectionOptions = {
   name: 'default',
@@ -11,7 +12,7 @@ const config: ConnectionOptions = {
       : process.env.DB_DATABASE,
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-  entities: ['../**/entities/*.entity{.ts,.js}'],
+  entities: [join(__dirname, '..', '**/entities/*.entity.{ts,js}')],
   synchronize: false,
   logging: false,
 };
