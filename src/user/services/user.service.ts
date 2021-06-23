@@ -31,4 +31,8 @@ export class UserService {
       password: hashPassword,
     });
   }
+
+  async findUserByEmail(email: string): Promise<User | undefined> {
+    return this.usersRepository.findByEmail(email);
+  }
 }

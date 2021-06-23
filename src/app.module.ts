@@ -5,11 +5,7 @@ import { UserModule } from './user/user.module';
 import * as ormconfig from './config/ormconfig';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot(ormconfig),
-    // AuthModule,
-    UserModule,
-  ],
+  imports: [TypeOrmModule.forRoot(ormconfig), AuthModule, UserModule],
   controllers: [],
   providers: [],
 })
