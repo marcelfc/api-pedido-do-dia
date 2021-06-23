@@ -3,10 +3,10 @@ items:
   user1:
     name: '{{name.firstName}}'
     email: 'admin@admin.com'
-    password: 'alterar_aqui_para_padrao'
+    password: '$2b$08$R8nNQa0R.vK0Bts4Wtdrb.Rt93zY0aMBonBlCktz4O8QRR4SYtcni'
     role: 'ADMIN'
   user2:
     name: '{{name.firstName}}'
     email: 'user@user.com'
-    password: 'alterar_aqui_para_padrao'
+    password: '$2b$08$R8nNQa0R.vK0Bts4Wtdrb.Rt93zY0aMBonBlCktz4O8QRR4SYtcni'
     role: 'BASIC'
