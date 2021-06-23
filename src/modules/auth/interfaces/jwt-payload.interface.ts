@@ -1,4 +1,4 @@
-import { UserRole } from 'src/user/entities/user.entity';
+import { UserRole } from '../../../modules/user/entities/user.entity';
 
 export interface IJwtPayload {
   email: string;

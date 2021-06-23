@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth.service';
-import * as ormconfig from '../../config/ormconfig';
+import * as ormconfig from '../../../config/ormconfig';
 import { AuthModule } from '../auth.module';
 import {
   runInTransaction,

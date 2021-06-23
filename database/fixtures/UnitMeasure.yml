@@ -1,0 +1,8 @@
+entity: UnitMeasure
+items:
+  user1:
+    unit: 'Unidade 1'
+    abbreviation: 'UND1'
+  user2:
+    unit: 'Unidade 2'
+    abbreviation: 'UND2'

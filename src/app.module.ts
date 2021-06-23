@@ -1,11 +1,17 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
+import { UnitMeasureModule } from './modules/unit-measure/unit-measure.module';
 import * as ormconfig from './config/ormconfig';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(ormconfig), AuthModule, UserModule],
+  imports: [
+    TypeOrmModule.forRoot(ormconfig),
+    AuthModule,
+    UserModule,
+    UnitMeasureModule,
+  ],
   controllers: [],
   providers: [],
 })
