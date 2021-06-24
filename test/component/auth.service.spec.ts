@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthService } from './auth.service';
-import * as ormconfig from '../../../config/ormconfig';
-import { AuthModule } from '../auth.module';
+import { AuthService } from '../../src/modules/auth/services/auth.service';
+import * as ormconfig from '../../src/config/ormconfig';
+import { AuthModule } from '../../src/modules/auth/auth.module';
 import {
   runInTransaction,
   initialiseTestTransactions,
 } from 'typeorm-test-transactions';
-import { IUserLogin } from '../interfaces/user-login.interface';
-import { UserRole } from '../../user/entities/user.entity';
+import { IUserLogin } from '../../src/modules/auth/interfaces/user-login.interface';
+import { UserRole } from '../../src/modules/user/entities/user.entity';
 
 initialiseTestTransactions();
 

@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
-import { UserService } from './user.service';
-import * as ormconfig from '../../../config/ormconfig';
-import { CreateUserDto } from '../dtos/create-user.dto';
-import { UsersRepository } from '../repositories/users.repository';
-import { User, UserRole } from '../entities/user.entity';
-import { UserModule } from '../user.module';
+import * as ormconfig from '../../src/config/ormconfig';
+import { CreateUserDto } from '../../src/modules/user/dtos/create-user.dto';
+import { UsersRepository } from '../../src/modules/user/repositories/users.repository';
+import { User, UserRole } from '../../src/modules/user/entities/user.entity';
+import { UserModule } from '../../src/modules/user/user.module';
+import { UserService } from '../../src/modules/user/services/user.service';
 import {
   runInTransaction,
   initialiseTestTransactions,

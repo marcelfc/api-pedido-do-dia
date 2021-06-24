@@ -16,7 +16,7 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "STAGE=test jest --require=ts-node/register --require=tsconfig-paths/register",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
+    "test:cov": "STAGE=test jest --coverage --require=ts-node/register --require=tsconfig-paths/register",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "node --require=dotenv/config --require=ts-node/register ./node_modules/typeorm/cli.js --config ./database/migration.ormconfig.ts",
@@ -37,6 +37,7 @@
     "class-validator": "^0.13.1",
     "custom-env": "^2.0.1",
     "dotenv": "^10.0.0",
+    "jest-html-reporter": "^3.4.1",
     "lodash": "^4.17.21",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
@@ -82,13 +83,23 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
+    "reporters": [
+      "default",
+      [
+        "./node_modules/jest-html-reporter",
+        {
+          "pageTitle": "Test Report",
+          "outputPath": "./report/test.html"
+        }
+      ]
+    ],
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "src/**/*.(t|j)s"
     ],
     "coverageDirectory": "./report/coverage",
     "coverageReporters": [

@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
-import { UnitMeasureService } from './unit-measure.service';
-import * as ormconfig from '../../../config/ormconfig';
+import { UnitMeasureService } from '../../src/modules/unit-measure/services/unit-measure.service';
+import * as ormconfig from '../../src/config/ormconfig';
 import {
   runInTransaction,
   initialiseTestTransactions,
 } from 'typeorm-test-transactions';
-import UnitMeasure from '../entities/unit-measure.entity';
-import { UnitMeasureModule } from '../unit-measure.module';
-import { UnitsMeasureRepository } from '../repositories/units-measure.repository';
-import { CreateUnitMeasureDto } from '../dtos/create-unit-measure.dto';
+import UnitMeasure from '../../src/modules/unit-measure/entities/unit-measure.entity';
+import { UnitMeasureModule } from '../../src/modules/unit-measure/unit-measure.module';
+import { UnitsMeasureRepository } from '../../src/modules/unit-measure/repositories/units-measure.repository';
+import { CreateUnitMeasureDto } from '../../src/modules/unit-measure/dtos/create-unit-measure.dto';
 
 initialiseTestTransactions();
 
