@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { classToClass } from 'class-transformer';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { UserService } from '../services/user.service';
 
@@ -8,6 +9,7 @@ export class UserController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createUser(createUserDto);
+    const user = await this.userService.createUser(createUserDto);
+    return classToClass(user);
   }
 }

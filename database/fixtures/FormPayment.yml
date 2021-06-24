@@ -1,0 +1,10 @@
+entity: FormPayment
+items:
+  form_payment1:
+    form_payment: 'Credit Card'
+    credit: true
+    debit: false
+  form_payment2:
+    form_payment: 'Debit Card'
+    credit: false
+    debit: true

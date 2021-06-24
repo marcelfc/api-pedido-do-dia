@@ -4,6 +4,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { UnitMeasureModule } from './modules/unit-measure/unit-measure.module';
 import { CardFlagModule } from './modules/card-flag/card-flag.module';
+import { FormPaymentModule } from './modules/form-payment/form-payment.module';
 import * as ormconfig from './config/ormconfig';
 
 @Module({
@@ -13,6 +14,7 @@ import * as ormconfig from './config/ormconfig';
     UserModule,
     UnitMeasureModule,
     CardFlagModule,
+    FormPaymentModule,
   ],
   controllers: [],
   providers: [],
