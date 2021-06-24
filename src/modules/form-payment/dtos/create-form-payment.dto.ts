@@ -5,8 +5,8 @@ export class CreateFormPaymentDto {
   form_payment: string;
 
   @IsBoolean()
-  credit?: boolean;
+  credit: boolean;
 
   @IsBoolean()
-  debit?: boolean;
+  debit: boolean;
 }

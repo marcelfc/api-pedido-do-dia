@@ -1,0 +1,8 @@
+entity: TypeService
+items:
+  type_service1:
+    type_service: 'Delivery'
+    delivery: true
+  type_service2:
+    type_service: 'Take out'
+    delivery: false
