@@ -1,0 +1,6 @@
+entity: CardFlag
+items:
+  flag1:
+    card_flag: 'Visa'
+  flag2:
+    card_flag: 'MasterCard'

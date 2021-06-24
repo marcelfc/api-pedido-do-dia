@@ -51,7 +51,7 @@ describe('UnitMeasureService', () => {
   );
 
   it(
-    'should be able to create a new Unit Measure',
+    'should be able to list all units measure',
     runInTransaction(async () => {
       const result = await service.getAll();
 

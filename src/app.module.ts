@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { UnitMeasureModule } from './modules/unit-measure/unit-measure.module';
+import { CardFlagModule } from './modules/card-flag/card-flag.module';
 import * as ormconfig from './config/ormconfig';
 
 @Module({
@@ -11,6 +12,7 @@ import * as ormconfig from './config/ormconfig';
     AuthModule,
     UserModule,
     UnitMeasureModule,
+    CardFlagModule,
   ],
   controllers: [],
   providers: [],

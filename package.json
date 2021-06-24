@@ -13,6 +13,7 @@
     "start:dev": "STAGE=development nest start --watch -e 'node -r dotenv/config'",
     "start:debug": "STAGE=development nest start --debug --watch -e 'node -r dotenv/config'",
     "start:prod": "node dist/main",
+    "schema:drop": "STAGE=test ts-node -r dotenv/config node_modules/.bin/typeorm schema:drop --config ./database/migration.ormconfig.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "STAGE=test jest --require=ts-node/register --require=tsconfig-paths/register",
     "test:watch": "jest --watch",
@@ -22,7 +23,8 @@
     "typeorm": "node --require=dotenv/config --require=ts-node/register ./node_modules/typeorm/cli.js --config ./database/migration.ormconfig.ts",
     "typeorm:test": "STAGE=test node --require=dotenv/config --require=ts-node/register ./node_modules/typeorm/cli.js --config ./database/migration.ormconfig.ts",
     "fixtures": "fixtures --require=dotenv/config -d ./database/fixtures --config ./src/config/ormconfig.ts  --require ts-node/register --debug",
-    "fixtures:test": "STAGE=test fixtures --require=dotenv/config -d ./database/fixtures --config ./src/config/ormconfig.ts  --require ts-node/register --debug"
+    "fixtures:test": "STAGE=test fixtures --require=dotenv/config -d ./database/fixtures --config ./src/config/ormconfig.ts  --require ts-node/register --debug",
+    "db:reload:test": "STAGE=test yarn schema:drop && yarn typeorm:test -- migration:run && yarn fixtures:test"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",
