@@ -6,6 +6,7 @@ import { UnitMeasureModule } from './modules/unit-measure/unit-measure.module';
 import { CardFlagModule } from './modules/card-flag/card-flag.module';
 import { FormPaymentModule } from './modules/form-payment/form-payment.module';
 import { TypeServiceModule } from './modules/type-service/type-service.module';
+import { CategoryModule } from './modules/category/category.module';
 import * as ormconfig from './config/ormconfig';
 
 @Module({
@@ -17,6 +18,7 @@ import * as ormconfig from './config/ormconfig';
     CardFlagModule,
     FormPaymentModule,
     TypeServiceModule,
+    CategoryModule,
   ],
   controllers: [],
   providers: [],

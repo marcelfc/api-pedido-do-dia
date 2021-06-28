@@ -31,7 +31,7 @@ describe('CardFlagService', () => {
   });
 
   it(
-    'should be able to create a new Unit Measure',
+    'should be able to create a new Card Flag',
     runInTransaction(async () => {
       const createCardFlagDto: CreateCardFlagDto = {
         card_flag: 'American Express',

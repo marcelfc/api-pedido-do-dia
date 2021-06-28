@@ -32,6 +32,7 @@ describe('Form Payment EndPoints', () => {
       const createFormPaymentDto: CreateFormPaymentDto = {
         form_payment: 'Credit Card',
         credit: true,
+        debit: false,
       };
 
       await request(app.getHttpServer())

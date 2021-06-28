@@ -6,11 +6,11 @@ import {
   runInTransaction,
   initialiseTestTransactions,
 } from 'typeorm-test-transactions';
-import { CreateCardFlagDto } from '../../src/modules/card-flag/dtos/create-card-flag.dto';
+import { CreateCategoryDto } from '../../src/modules/category/dtos/create-category.dto';
 
 initialiseTestTransactions();
 
-describe('Card Flag EndPoints', () => {
+describe('Category EndPoints', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
@@ -27,24 +27,24 @@ describe('Card Flag EndPoints', () => {
   });
 
   test(
-    'Create a new Card Flag',
+    'Create a new Category',
     runInTransaction(async () => {
-      const createCardFlagDto: CreateCardFlagDto = {
-        card_flag: 'American Express',
+      const createCategoryDto: CreateCategoryDto = {
+        category: 'Pizza',
       };
 
       await request(app.getHttpServer())
-        .post('/card-flag')
-        .send(createCardFlagDto)
+        .post('/category')
+        .send(createCategoryDto)
         .expect(201);
     }),
   );
 
   test(
-    'Return all card flags',
+    'Return all categories',
     runInTransaction(async () => {
       const response = await request(app.getHttpServer())
-        .get('/card-flag')
+        .get('/category')
         .expect(200);
 
       expect(response.body).toHaveLength(2);

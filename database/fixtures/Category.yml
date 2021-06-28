@@ -1,0 +1,6 @@
+entity: Category
+items:
+  category1:
+    category: 'Pizzas'
+  category2:
+    category: 'Juices'
