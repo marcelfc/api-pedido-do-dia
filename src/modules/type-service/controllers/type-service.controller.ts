@@ -1,4 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Roles } from '../../auth/decorators/roles.decorator';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 import { CreateTypeServiceDto } from '../dtos/create-type-service.dto';
 import TypeService from '../entities/type-service.entity';
 import { TypeServiceService } from '../services/type-service.service';
@@ -8,6 +11,8 @@ export class TypeServiceController {
   constructor(private typeServiceService: TypeServiceService) {}
 
   @Post()
+  @UseGuards(AuthGuard(), RolesGuard)
+  @Roles('ADMIN')
   async create(
     @Body()
     createTypeServiceDto: CreateTypeServiceDto,

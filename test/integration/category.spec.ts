@@ -29,12 +29,25 @@ describe('Category EndPoints', () => {
   test(
     'Create a new Category',
     runInTransaction(async () => {
+      // login
+      const credentials = {
+        email: 'admin@admin.com',
+        password: '12345678',
+      };
+
+      const loginResponse = await request(app.getHttpServer())
+        .post('/auth/login')
+        .send(credentials);
+
+      const { token } = loginResponse.body;
+
       const createCategoryDto: CreateCategoryDto = {
         category: 'Pizza',
       };
 
       await request(app.getHttpServer())
         .post('/category')
+        .set('Authorization', `Bearer ${token}`)
         .send(createCategoryDto)
         .expect(201);
     }),

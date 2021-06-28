@@ -6,7 +6,7 @@ import {
   runInTransaction,
   initialiseTestTransactions,
 } from 'typeorm-test-transactions';
-import { IUserLogin } from 'src/modules/auth/interfaces/user-login.interface';
+import { IUserLogin } from '../../src/modules/auth/interfaces/user-login.interface';
 import { UserRole } from '../../src/modules/user/entities/user.entity';
 
 initialiseTestTransactions();

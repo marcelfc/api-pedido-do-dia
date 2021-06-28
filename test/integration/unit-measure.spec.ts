@@ -29,6 +29,18 @@ describe('Unit Measure EndPoints', () => {
   test(
     'Create a new Unit measure',
     runInTransaction(async () => {
+      // login
+      const credentials = {
+        email: 'admin@admin.com',
+        password: '12345678',
+      };
+
+      const loginResponse = await request(app.getHttpServer())
+        .post('/auth/login')
+        .send(credentials);
+
+      const { token } = loginResponse.body;
+
       const createUnitMeasureDto: CreateUnitMeasureDto = {
         unit: 'Unidade',
         abbreviation: 'Und',
@@ -36,6 +48,7 @@ describe('Unit Measure EndPoints', () => {
 
       await request(app.getHttpServer())
         .post('/unit-measure')
+        .set('Authorization', `Bearer ${token}`)
         .send(createUnitMeasureDto)
         .expect(201);
     }),

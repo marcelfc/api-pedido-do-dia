@@ -29,6 +29,18 @@ describe('Form Payment EndPoints', () => {
   test(
     'Create a new Form Payment',
     runInTransaction(async () => {
+      // login
+      const credentials = {
+        email: 'admin@admin.com',
+        password: '12345678',
+      };
+
+      const loginResponse = await request(app.getHttpServer())
+        .post('/auth/login')
+        .send(credentials);
+
+      const { token } = loginResponse.body;
+
       const createFormPaymentDto: CreateFormPaymentDto = {
         form_payment: 'Credit Card',
         credit: true,
@@ -37,6 +49,7 @@ describe('Form Payment EndPoints', () => {
 
       await request(app.getHttpServer())
         .post('/form-payment')
+        .set('Authorization', `Bearer ${token}`)
         .send(createFormPaymentDto)
         .expect(201);
     }),

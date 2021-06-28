@@ -1,4 +1,7 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+import { Body, Controller, Post, Get, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Roles } from '../../auth/decorators/roles.decorator';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 import { CreateUnitMeasureDto } from '../dtos/create-unit-measure.dto';
 import UnitMeasure from '../entities/unit-measure.entity';
 import { UnitMeasureService } from '../services/unit-measure.service';
@@ -8,6 +11,8 @@ export class UnitMeasureController {
   constructor(private unitMeasureService: UnitMeasureService) {}
 
   @Post()
+  @UseGuards(AuthGuard(), RolesGuard)
+  @Roles('ADMIN')
   async create(
     @Body()
     createUnitMeasureDto: CreateUnitMeasureDto,

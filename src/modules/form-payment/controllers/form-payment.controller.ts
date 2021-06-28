@@ -1,4 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Roles } from '../../auth/decorators/roles.decorator';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 import { CreateFormPaymentDto } from '../dtos/create-form-payment.dto';
 import FormPayment from '../entities/form-payment.entity';
 import { FormPaymentService } from '../services/form-payment.service';
@@ -8,6 +11,8 @@ export class FormPaymentController {
   constructor(private formPaymentService: FormPaymentService) {}
 
   @Post()
+  @UseGuards(AuthGuard(), RolesGuard)
+  @Roles('ADMIN')
   async create(
     @Body()
     createformPaymentDto: CreateFormPaymentDto,

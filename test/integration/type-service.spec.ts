@@ -29,6 +29,17 @@ describe('Form Payment EndPoints', () => {
   test(
     'Create a new Form Payment',
     runInTransaction(async () => {
+      // login
+      const credentials = {
+        email: 'admin@admin.com',
+        password: '12345678',
+      };
+
+      const loginResponse = await request(app.getHttpServer())
+        .post('/auth/login')
+        .send(credentials);
+
+      const { token } = loginResponse.body;
       const createTypeServiceDto: CreateTypeServiceDto = {
         type_service: 'Delivery',
         delivery: true,
@@ -36,6 +47,7 @@ describe('Form Payment EndPoints', () => {
 
       await request(app.getHttpServer())
         .post('/type-service')
+        .set('Authorization', `Bearer ${token}`)
         .send(createTypeServiceDto)
         .expect(201);
     }),

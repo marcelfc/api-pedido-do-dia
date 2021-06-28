@@ -29,12 +29,25 @@ describe('Card Flag EndPoints', () => {
   test(
     'Create a new Card Flag',
     runInTransaction(async () => {
+      // login
+      const credentials = {
+        email: 'admin@admin.com',
+        password: '12345678',
+      };
+
+      const loginResponse = await request(app.getHttpServer())
+        .post('/auth/login')
+        .send(credentials);
+
+      const { token } = loginResponse.body;
+
       const createCardFlagDto: CreateCardFlagDto = {
         card_flag: 'American Express',
       };
 
       await request(app.getHttpServer())
         .post('/card-flag')
+        .set('Authorization', `Bearer ${token}`)
         .send(createCardFlagDto)
         .expect(201);
     }),

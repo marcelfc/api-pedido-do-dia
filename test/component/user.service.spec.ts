@@ -54,6 +54,30 @@ describe('UserService', () => {
   );
 
   it(
+    'should be able to create a new User with role',
+    runInTransaction(async () => {
+      const createUserDto: CreateUserDto = {
+        name: 'Joe Gomes',
+        email: 'joe_gomes@gmail.com',
+        password: '12345678',
+        role: UserRole.BASIC,
+      };
+
+      const result = await service.createUser(createUserDto);
+
+      expect(result).toEqual({
+        id: expect.any(String),
+        name: 'Joe Gomes',
+        email: 'joe_gomes@gmail.com',
+        password: expect.any(String),
+        created_at: expect.any(Date),
+        updated_at: expect.any(Date),
+        role: UserRole.BASIC,
+      });
+    }),
+  );
+
+  it(
     'not should be able to create a new User with a existing email',
     runInTransaction(async () => {
       const createUserDto: CreateUserDto = {
