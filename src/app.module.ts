@@ -8,6 +8,8 @@ import { FormPaymentModule } from './modules/form-payment/form-payment.module';
 import { TypeServiceModule } from './modules/type-service/type-service.module';
 import { CategoryModule } from './modules/category/category.module';
 import * as ormconfig from './config/ormconfig';
+import { RolesGuard } from './modules/auth/guards/roles.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -21,6 +23,11 @@ import * as ormconfig from './config/ormconfig';
     CategoryModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}

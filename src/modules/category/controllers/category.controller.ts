@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateCategoryDto } from '../dtos/create-category.dto';
 import Category from '../entities/category.entity';
 import { CategoryService } from '../services/category.service';
@@ -15,6 +16,7 @@ export class CategoryController {
   }
 
   @Get()
+  @UseGuards(AuthGuard())
   async index(): Promise<Category[]> {
     return this.categoryService.getAll();
   }

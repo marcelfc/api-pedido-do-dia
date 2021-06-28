@@ -37,4 +37,12 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
   }
+
+  async getUserRoleByToken(token: string): Promise<string> {
+    const payload = await this.jwtService.verify(token);
+
+    console.log(payload);
+
+    return 'payload';
+  }
 }
