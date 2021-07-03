@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Config database
-        run: yarn db:reload:test
+        run: yarn typeorm:test
 
       
           
