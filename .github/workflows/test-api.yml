@@ -9,7 +9,7 @@ jobs:
       image: node:12-alpine
     services:
       postgres:
-        image: postgres
+        image: postgres:11
         env:
           POSTGRES_PASWORD: ${{ secrets.POSTGRES_PASSWORD_TEST }}
         options: >-
