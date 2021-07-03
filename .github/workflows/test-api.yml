@@ -1,0 +1,29 @@
+name: Test API
+
+on: [push]
+
+jobs: 
+  run-docker:
+    runs-on: ubuntu-latest
+    container: 
+      image: node:12-alpine
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASWORD: 123456
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5433:5432
+    steps: 
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      
+          
