@@ -12,11 +12,15 @@ jobs:
         image: postgres:11
         env:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD_TEST }}
+        ports:
+          - 5433:5432
     steps: 
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      - name: Config database
+        run: yarn db:reload:test
 
       
           
