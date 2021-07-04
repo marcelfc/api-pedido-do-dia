@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       - name: Run Lint 
         run: yarn lint
 
