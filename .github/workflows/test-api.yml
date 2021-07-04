@@ -2,8 +2,17 @@ name: Test API
 
 on: [push]
 
-jobs: 
-  run-docker:
+jobs:
+  run-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Run Lint 
+        run: yarn lint
+
+  test-api:
+    needs: [run-lint]
     runs-on: ubuntu-latest
     steps: 
       - name: Check out repository code
