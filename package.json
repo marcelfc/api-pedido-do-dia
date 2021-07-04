@@ -24,7 +24,7 @@
     "typeorm:test": "STAGE=test node --require=dotenv/config --require=ts-node/register ./node_modules/typeorm/cli.js --config ./database/migration.ormconfig.ts",
     "fixtures": "fixtures --require=dotenv/config -d ./database/fixtures --config ./src/config/ormconfig.ts  --require ts-node/register --debug",
     "fixtures:test": "STAGE=test fixtures --require=dotenv/config -d ./database/fixtures --config ./src/config/ormconfig.ts  --require ts-node/register --debug",
-    "db:reload:test": "STAGE=test yarn schema:drop && yarn typeorm:test -- migration:run && yarn fixtures:test"
+    "db:reload:test": "STAGE=test yarn --require=dotenv/config schema:drop && yarn typeorm:test -- migration:run && yarn fixtures:test"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.15",

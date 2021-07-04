@@ -5,22 +5,16 @@ on: [push]
 jobs: 
   run-docker:
     runs-on: ubuntu-latest
-    container: 
-      image: node:12-alpine
-    services:
-      postgres:
-        image: postgres:11
-        env:
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD_TEST }}
-        ports:
-          - 5433:5432
     steps: 
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Run migrations
-        run: yarn typeorm:test -- migration:run
+      - name: Up containers
+        run: docker-compose up -d
+      - name: Config database Test
+        run: yarn db:reload:test
+
 
       
           
