@@ -14,6 +14,8 @@ jobs:
         run: docker-compose up -d
       - name: Config database Test
         run: yarn db:reload:test
+      - name: Run tests
+        run: yarn test
 
 
       
