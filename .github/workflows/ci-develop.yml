@@ -37,3 +37,4 @@ jobs:
         with:
           name: code-test-report
           path: report
+      - uses: actions/download-artifact
