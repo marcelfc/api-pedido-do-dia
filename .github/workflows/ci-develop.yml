@@ -31,4 +31,9 @@ jobs:
       - name: Config database Test
         run: yarn db:reload:test
       - name: Run tests
-        run: yarn test
+        run: yarn test:cov
+      - name: upload test coverage
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-test-report
+          path: report
