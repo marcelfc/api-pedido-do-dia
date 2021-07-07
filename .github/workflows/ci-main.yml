@@ -23,7 +23,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
-      - run: yarn lint
+      - run: yarn lin
       - name: Up containers
         run: docker-compose up -d
       - name: Config database Test
@@ -45,3 +45,10 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./report/coverage/cobertura-coverage.xml
           fail_ci_if_error: true
+      - name: Open Issue
+        if: failure() && github.event_name == 'push'
+        uses: JasonEtco/create-an-issue@v2
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            assignees: ${{ github.event.push.user.login }}
