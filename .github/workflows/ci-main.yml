@@ -1,5 +1,5 @@
 on: 
-  pull_request:
+  push:
     branches: [main]
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: code-test-report
-      - name: Upload Coverage report
+      - name: Integration Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
