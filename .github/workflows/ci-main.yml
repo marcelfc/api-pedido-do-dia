@@ -40,6 +40,8 @@ jobs:
         with:
           name: code-test-report
       - name: Upload Coverage report
-        run: yarn add codecov
-        env: 
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./report/coverage/cobertura-coverage.xml
+          fail_ci_if_error: true
