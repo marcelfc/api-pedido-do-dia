@@ -47,8 +47,10 @@ jobs:
           fail_ci_if_error: true
       - name: Open Issue
         if: failure() && github.event_name == 'push'
-        uses: JasonEtco/create-an-issue@v2
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            assignees: ${{ github.event.push.user.login }}
+        uses: alialaa/issue-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Job Failed
+          body: Some Issue Body
+          assignees: |
+            ${{ github.event.push.user.login }}
