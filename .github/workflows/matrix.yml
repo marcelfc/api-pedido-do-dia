@@ -15,4 +15,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: echo ${{ matrix.node-version }}
-      - run: ${{ matrix.os }}
+      - run: echo ${{ matrix.os }}
