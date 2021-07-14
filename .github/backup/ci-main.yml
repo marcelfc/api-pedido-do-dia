@@ -23,7 +23,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
-      - run: yarn lin
+      - run: yarn lint
       - name: Up containers
         run: docker-compose up -d
       - name: Config database Test
@@ -52,5 +52,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: Job Failed
           body: Some Issue Body
-          assignees: |
-            ${{ github.event.push.user.login }}
