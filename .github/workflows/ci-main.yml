@@ -50,17 +50,10 @@ jobs:
           files: ./report/coverage/cobertura-coverage.xml
           fail_ci_if_error: true
       - name: Open Issue
-        if: failure() && github.event_name == 'push'
+        if: success() && github.event_name == 'push'
         uses: alialaa/issue-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: Job Failed
           body: Main Workflow Failed
           assignees: ${{ github.event.push.user.login }}
-      - name: notification telegram
-        if: success()
-        uses: xinthink/action-telegram@v1.1
-        with:
-          botToken: ${{ secrets.BOT_TOKEN }}
-          chatId: ${{ secrets.CHAT_ID }}
-          jobStatus: ${{ job.status }}
