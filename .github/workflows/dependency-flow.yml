@@ -1,14 +1,15 @@
+name: Dependency flow
+
 on: 
   push:
     branches:
       - 'feature/**'
-
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use NodeJS
+      - name: Use NodeJSfeature
         uses: actions/setup-node@v2
         with:
           node-version: "12.x"
