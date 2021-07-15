@@ -1,9 +1,7 @@
 name: Dependency flow
 
 on: 
-  push:
-    branches:
-      - 'feature/**'
+  push: ['main']
 jobs:
   job1:
     runs-on: ubuntu-latest
