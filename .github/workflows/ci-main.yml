@@ -46,11 +46,11 @@ jobs:
       - name: Integration Codecov
         uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOK }}
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./report/coverage/cobertura-coverage.xml
           fail_ci_if_error: true
       - name: Open Issue
-        if: failure() && github.event_name == 'push'
+        if: success() && github.event_name == 'push'
         uses: alialaa/issue-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
