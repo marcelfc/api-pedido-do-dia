@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use NodeJS
-        uses: actions/setup-node@v1000
+        uses: actions/setup-node@v2
         with:
           node-version: "12.x"
       - name: Get yarn cache directory path
@@ -46,7 +46,7 @@ jobs:
       - name: Integration Codecov
         uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOK }}
           files: ./report/coverage/cobertura-coverage.xml
           fail_ci_if_error: true
       - name: Open Issue
