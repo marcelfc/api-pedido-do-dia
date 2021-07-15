@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use NodeJS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1000
         with:
           node-version: "12.x"
       - name: Get yarn cache directory path
