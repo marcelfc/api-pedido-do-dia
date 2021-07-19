@@ -1,6 +1,9 @@
 name: Matrix Workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      ['release/**']
 
 jobs:
   api-run:
