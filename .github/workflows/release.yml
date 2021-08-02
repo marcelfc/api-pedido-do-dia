@@ -3,11 +3,20 @@ name: Create release teste
 on: 
   pull_request:
     branches: [develop]
+    tags: 
+      - 'v*.*.*'
 
 jobs:
   update-release:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Test
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
       - name: Create Branch Release
         id: 'create-release'
         uses: peterjgrainger/action-create-branch@v2.0.1
