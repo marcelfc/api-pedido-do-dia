@@ -11,15 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-      - name: Check output
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ steps.vars.outputs.tag }}
+      - name: Get tag
+        id: tag
+        run: echo ${{ github.event.head_commit.message }}
       - name: Create Branch Release
         id: 'create-release'
         uses: peterjgrainger/action-create-branch@v2.0.1
