@@ -32,6 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: echo ${{ jobs.initialise.outputs.commit_message }}
       - name: Create Branch Release
         id: 'create-release'
         uses: peterjgrainger/action-create-branch@v2.0.1
