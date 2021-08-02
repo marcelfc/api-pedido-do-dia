@@ -1,15 +1,35 @@
-name: Create release 
+name: Create release teste
 
 on: 
   pull_request:
     branches: [develop]
+    tags: 
+      - 'v*.*.*'
 
 jobs:
   update-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: peterjgrainger/action-create-branch@v2.0.1
+      - uses: actions/checkout@v2
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Check output
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ steps.vars.outputs.tag }}
+      - name: Create Branch Release
+        id: 'create-release'
+        uses: peterjgrainger/action-create-branch@v2.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: 'release-notes'
+      - name: Merge Branch Release
+        uses: Hatzelencio/merge-branch@v0.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          base: 'release-notes'
