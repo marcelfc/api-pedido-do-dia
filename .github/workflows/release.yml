@@ -24,10 +24,8 @@ jobs:
           elif [[ '${{ github.event_name }}' == 'pull_request' ]]; then
             echo ::set-output name=commit_message::$(git log --format=%B -n 1 HEAD^2)
           fi
+      - run: echo "${{ steps.get_commit_message.outputs.commit_message }}"
 
-    outputs:
-      commit_message:
-        echo "${{ steps.get_commit_message.outputs.commit_message }}"
   update-release:
     runs-on: ubuntu-latest
     steps:
