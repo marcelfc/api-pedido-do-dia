@@ -26,7 +26,7 @@ jobs:
           fi
       - name: Get release version
         id: release_version
-        run: echo ::set-output name=release_version::$('${{ steps.get_commit_message.outputs.commit_message }}' | cut -d'#' -f 2)
+        run: echo ::set-output name=release_version::$(echo '${{ steps.get_commit_message.outputs.commit_message }}' | cut -d'#' -f 2)
       - uses: actions/checkout@v2
       - name: Create Branch Release
         id: 'create-release'
