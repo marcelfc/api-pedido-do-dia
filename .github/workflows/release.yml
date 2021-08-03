@@ -27,7 +27,7 @@ jobs:
       - name: Get release version
         id: release_version
         run: |
-          echo ::set-output name=release_version::"'${{ steps.get_commit_message.outputs.commit_message }}' | cut -d'#' -f 2"
+          echo ::set-output name=release_version::"'release/${{ steps.get_commit_message.outputs.commit_message }}' | cut -d'#' -f 2"
       - uses: actions/checkout@v2
       - name: Create Branch Release
         id: 'create-release'
@@ -35,10 +35,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: 'release/${{ steps.release_version.outputs.release_version }}'
+          branch: '${{ steps.release_version.outputs.release_version }}'
       - name: Merge Branch Release
         uses: Hatzelencio/merge-branch@v0.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          base: 'release/${{ steps.release_version.outputs.release_version }}'
+          base: '${{ steps.release_version.outputs.release_version }}'
