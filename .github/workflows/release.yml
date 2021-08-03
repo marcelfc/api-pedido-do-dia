@@ -1,15 +1,43 @@
-name: Create release 
+name: Create release test
 
 on: 
   pull_request:
     branches: [develop]
+    tags: 
+      - 'v*.*.*'
 
 jobs:
-  update-release:
+  initialise:
     runs-on: ubuntu-latest
     steps:
-      - uses: peterjgrainger/action-create-branch@v2.0.1
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          # for pull_request so we can do HEAD^2
+          fetch-depth: 2
+
+      - name: Get commit message
+        id: get_commit_message
+        run: |
+          if   [[ '${{ github.event_name }}' == 'push' ]]; then
+            echo ::set-output name=commit_message::$(git log --format=%B -n 1 HEAD)
+          elif [[ '${{ github.event_name }}' == 'pull_request' ]]; then
+            echo ::set-output name=commit_message::$(git log --format=%B -n 1 HEAD^2)
+          fi
+      - name: Get release version
+        id: release_version
+        run: echo ::set-output name=release_version::$(echo '${{ steps.get_commit_message.outputs.commit_message }}' | cut -d'#' -f 2)
+      - uses: actions/checkout@v2
+      - name: Create Branch Release
+        id: 'create-release'
+        uses: peterjgrainger/action-create-branch@v2.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: 'release-notes'
+          branch: ${{ steps.release_version.outputs.release_version }}
+      - name: Merge Branch Release
+        uses: Hatzelencio/merge-branch@v0.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          base: ${{ steps.release_version.outputs.release_version }}
