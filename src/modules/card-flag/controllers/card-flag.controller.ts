@@ -28,4 +28,9 @@ export class CardFlagController {
   async teste(): Promise<CardFlag[]> {
     return this.cardFlagService.getAll();
   }
+
+  @Get()
+  async testeteste(): Promise<CardFlag[]> {
+    return this.cardFlagService.getAll();
+  }
 }
