@@ -1,0 +1,13 @@
+name: 'Reusable Workflow'
+
+on: 
+  push:
+    branches: [release/*]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: This is a reusable action
+        run: echo "Reusable text"
+
