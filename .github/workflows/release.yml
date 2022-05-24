@@ -2,7 +2,7 @@ name: Create release test
 
 on: 
   pull_request:
-    branches: [develop]
+    branches: [master]
     tags: 
       - 'v*.*.*'
 
